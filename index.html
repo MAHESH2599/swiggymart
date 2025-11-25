@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Instamart – Quick Food Delivery</title>
+<style>
+  *{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+  body{
+    margin:0;
+    padding:24px;
+    background:linear-gradient(135deg,#ffecd2,#fcb69f);
+  }
+  .wrap{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 14px 35px rgba(0,0,0,.18);
+    overflow:hidden;
+  }
+  .head{
+    background:linear-gradient(135deg,#ff6f00,#ff9100);
+    color:#fff;
+    padding:16px 26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .head h1{
+    margin:0;
+    font-size:22px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .head h1 span.emoji{font-size:26px}
+  .tag{
+    font-size:11px;
+    background:rgba(255,255,255,.18);
+    padding:4px 10px;
+    border-radius:999px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+  }
+
+  .body{
+    padding:18px 22px 24px;
+  }
+
+  .sec{
+    margin-bottom:12px;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#fafafa;
+    border:1px solid #eee;
+  }
+
+  .title{
+    font-weight:bold;
+    color:#ff6f00;
+    margin-bottom:4px;
+  }
+
+  .small{font-size:12px;color:#666;margin-bottom:8px;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  .item{
+    background:#fff;
+    border-radius:10px;
+    border:1px solid #eee;
+    padding:7px 9px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:13px;
+  }
+
+  .left{display:flex;align-items:center;gap:7px;}
+  .item-name{font-weight:bold}
+  .price{font-size:11px;color:#777;}
+  .qty-input{width:60px;padding:4px 6px;border-radius:6px;border:1px solid #ccc;font-size:13px;}
+
+  input[type="number"],input[type="text"],select{
+    width:100%;padding:6px 8px;border-radius:6px;border:1px solid #ccc;font-size:13px;margin:4px 0 8px;
+  }
+
+  .radios{display:flex;gap:8px;margin:6px 0 8px;}
+  .radios label{font-size:13px;background:#fff;border-radius:999px;border:1px solid #eee;padding:4px 12px;cursor:pointer;display:flex;align-items:center;gap:4px;}
+
+  .btn{
+    border:none;border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;margin:4px 4px 0 0;display:inline-flex;align-items:center;gap:4px;
+  }
+  .p{background:#ff6f00;color:#fff;}
+  .s{background:#ffe0c2;color:#a84303;}
+
+  .summary{
+    font-size:13px;background:#fff;border-radius:10px;border:1px dashed #ffb74d;padding:10px 12px;
+  }
+  .summary-row{display:flex;justify-content:space-between;margin:2px 0;}
+  .summary-total{font-weight:bold;font-size:14px;margin-top:4px;border-top:1px solid #ffe0b2;padding-top:4px;}
+  .summary-empty{font-size:12px;color:#999;font-style:italic;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1><span class="emoji">🛵</span> Swiggy Instamart – Quick Food Delivery</h1>
+    <span class="tag">Food Dishes · Checkout</span>
+  </div>
+
+  <div class="body">
+
+    <!-- 1. Food Items -->
+    <div class="sec">
+      <div class="title">1. Food Items (Dishes)</div>
+      <div class="small">Select dishes and quantity.</div>
+
+      <div class="grid">
+        <div class="item">
+          <div class="left">
+            <input type="checkbox" id="vegB">
+            <div><div class="item-name">Veg Biryani</div><div class="price">₹150</div></div>
+          </div>
+          Qty <input class="qty-input" type="number" id="qVegB" min="0" value="0">
+        </div>
+
+        <div class="item">
+          <div class="left">
+            <input type="checkbox" id="chkB">
+            <div><div class="item-name">Chicken Biryani</div><div class="price">₹200</div></div>
+          </div>
+          Qty <input class="qty-input" type="number" id="qChkB" min="0" value="0">
+        </div>
+
+        <div class="item">
+          <div class="left">
+            <input type="checkbox" id="pnr">
+            <div><div class="item-name">Paneer Butter Masala</div><div class="price">₹180</div></div>
+          </div>
+          Qty <input class="qty-input" type="number" id="qPnr" min="0" value="0">
+        </div>
+
+        <div class="item">
+          <div class="left">
+            <input type="checkbox" id="dosa">
+            <div><div class="item-name">Masala Dosa</div><div class="price">₹80</div></div>
+          </div>
+          Qty <input class="qty-input" type="number" id="qDosa" min="0" value="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- Delivery Slot -->
+    <div class="sec">
+      <div class="title">2. Delivery Slot</div>
+      <select id="slot">
+        <option value="">-- Choose Slot --</option>
+        <option value="9-11">09:00 – 11:00</option>
+        <option value="11-13">11:00 – 13:00</option>
+        <option value="13-15">13:00 – 15:00</option>
+        <option value="19-21">19:00 – 21:00</option>
+      </select>
+    </div>
+
+    <!-- Payment -->
+    <div class="sec">
+      <div class="title">3. Payment</div>
+      <div class="radios">
+        <label><input type="radio" name="pay" value="COD"> COD</label>
+        <label><input type="radio" name="pay" value="UPI"> UPI</label>
+        <label><input type="radio" name="pay" value="CARD"> Card</label>
+      </div>
+      <label>UPI ID (for UPI)</label>
+      <input type="text" id="upi" placeholder="example@upi">
+      <label>Card Number (16 digits)</label>
+      <input type="text" id="card" placeholder="1234 5678 9012 3456">
+    </div>
+
+    <!-- Address -->
+    <div class="sec">
+      <div class="title">4. Delivery Address &amp; Pincode</div>
+      <label>Address</label>
+      <input type="text" id="addr1" placeholder="House / Street">
+      <label>City</label>
+      <input type="text" id="city" placeholder="City">
+      <label>Pincode</label>
+      <input type="text" id="pin" placeholder="6 digit pincode">
+    </div>
+
+    <!-- Order summary -->
+    <div class="sec">
+      <div class="title">5. Order Summary</div>
+      <div id="summary" class="summary">
+        <div class="summary-empty">No dishes selected yet.</div>
+      </div>
+      <div style="text-align:right;margin-top:8px">
+        <button class="btn p" onclick="placeOrder()">Place Order</button>
+        <button class="btn s" onclick="resetForm()">Reset</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const MENU_ITEMS = [
+  {id:"vegB",qtyId:"qVegB",name:"Veg Biryani",price:150},
+  {id:"chkB",qtyId:"qChkB",name:"Chicken Biryani",price:200},
+  {id:"pnr",qtyId:"qPnr",name:"Paneer Butter Masala",price:180},
+  {id:"dosa",qtyId:"qDosa",name:"Masala Dosa",price:80}
+];
+
+function calculateOrder(){
+  let productFlags=[], amount=0, lines=[];
+  MENU_ITEMS.forEach(item=>{
+    const sel=document.getElementById(item.id).checked;
+    const qty=parseInt(document.getElementById(item.qtyId).value||"0",10);
+    productFlags.push({sel,qty});
+    if(sel && qty>0){
+      const lineTotal=qty*item.price;
+      amount+=lineTotal;
+      lines.push({name:item.name,qty,price:item.price,total:lineTotal});
+    }
+  });
+  return {productFlags,amount,lines};
+}
+
+function updateSummary(){
+  const summary=document.getElementById("summary");
+  const {amount,lines}=calculateOrder();
+  summary.innerHTML="";
+  if(lines.length===0){
+    const empty=document.createElement("div");
+    empty.className="summary-empty";
+    empty.textContent="No dishes selected yet.";
+    summary.appendChild(empty);return;
+  }
+  lines.forEach(l=>{
+    const row=document.createElement("div");
+    row.className="summary-row";
+    row.innerHTML=`<span>${l.name} × ${l.qty}</span><span>₹${l.total}</span>`;
+    summary.appendChild(row);
+  });
+  const total=document.createElement("div");
+  total.className="summary-row summary-total";
+  total.innerHTML=`<span>Total</span><span>₹${amount}</span>`;
+  summary.appendChild(total);
+}
+
+function placeOrder(){
+  const {productFlags,amount}=calculateOrder();
+  const pOK=productFlags.some(p=>p.sel && p.qty>0);
+  if(!pOK){alert("Select at least one dish.");return;}
+
+  const slot=document.getElementById("slot").value;
+  if(!slot){alert("Choose a delivery slot.");return;}
+
+  let method=null;
+  document.querySelectorAll("input[name='pay']").forEach(r=>{if(r.checked)method=r.value;});
+  if(!method){alert("Select payment method.");return;}
+
+  if(method==="UPI" && document.getElementById("upi").value.trim()===""){alert("Enter UPI ID.");return;}
+  if(method==="CARD" && !/^\d{16}$/.test(document.getElementById("card").value.replace(/\s+/g,""))){alert("Invalid card number.");return;}
+
+  if(document.getElementById("addr1").value.trim().length<5 ||
+     document.getElementById("city").value.trim().length<3 ||
+     !/^[1-9][0-9]{5}$/.test(document.getElementById("pin").value)){
+       alert("Invalid address or pincode.");return;
+     }
+
+  alert("Order SUCCESS! Total ₹"+amount+"\nThank you 😊");
+}
+
+function resetForm(){
+  MENU_ITEMS.forEach(i=>{document.getElementById(i.id).checked=false;document.getElementById(i.qtyId).value=0;});
+  ["slot","upi","card","addr1","city","pin"].forEach(id=>document.getElementById(id).value="");
+  document.querySelectorAll("input[name='pay']").forEach(r=>r.checked=false);
+  updateSummary();
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  MENU_ITEMS.forEach(item=>{
+    document.getElementById(item.id).addEventListener("change",updateSummary);
+    document.getElementById(item.qtyId).addEventListener("input",updateSummary);
+  });
+});
+</script>
+</body>
+</html>
